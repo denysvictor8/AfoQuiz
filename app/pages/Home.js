@@ -24,7 +24,6 @@ const Home = () => {
       console.log(quizList)
     }
     getQuizzes(db)
-    //console.log(quizzes)
   }, []);
 
 
@@ -42,7 +41,7 @@ const Home = () => {
               }
             >
               <Text>
-                {item.id}
+                {item.id} {"\n"}
                 {item.descricao}
               </Text>
             </Pressable>
