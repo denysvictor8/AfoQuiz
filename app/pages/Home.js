@@ -28,7 +28,7 @@ const Home = () => {
 
 
   return (
-    <View style={{ flex:1 }}>
+    <View style={ styles.container }>
       <Text>Selecione uma das categorias abaixo:</Text>
       <FlashList
         data={quizzes}
@@ -40,10 +40,14 @@ const Home = () => {
                   () => navigation.navigate('Quiz', {item})
               }
             >
-              <Text>
-                {item.id} {"\n"}
-                {item.descricao}
-              </Text>
+              <View>
+                <Text styles={styles.titulo}>
+                  {item.id}
+                </Text>
+                <Text>
+                  {item.descricao}
+                </Text>
+              </View>
             </Pressable>
           </View>
         }
@@ -55,15 +59,17 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1, 
+    backgroundColor:"#f6d7b0",    
+  },
   opcoes: {
-    fontSize: 24,
-    color: 'blue',
-    backgroundColor: 'yellow',
-    textAlign: 'center',
-    marginBottom: 10,
-    marginTop: 10,
-    borderRadius: 5,
-    borderBottomWidth: 1/2,
-    borderLeftWidth: 1/2,
-  }
+    backgroundColor: '#e7c496',
+    padding: 12,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    alignItems: 'center',
+    marginBottom: 30,
+    alignItems: 'center',
+  },
 })

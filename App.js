@@ -1,5 +1,6 @@
 import Home from './app/pages/Home';
 import Quiz from './app/pages/Quiz';
+import Resultados from './app/pages/Resultados';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,12 +9,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const Stack = createStackNavigator();
 
-
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        
         <Stack.Screen
           component={Home}
           name="Home"
@@ -22,7 +21,10 @@ export default function App() {
           component={Quiz}
           name="Quiz"
         />
-
+        <Stack.Screen
+          component={Resultados}
+          name="Resultados"
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
