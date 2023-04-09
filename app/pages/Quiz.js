@@ -51,12 +51,14 @@ const Quiz = ({ route }) => {
   }
 
   const verificarResposta = (opMarcada, opCorreta) => {
+    console.log("choosen: ", opMarcada, " correct: ", opCorreta)
+    // compares the choosen option with the right value
     if (opMarcada == opCorreta) {
-      setAcertos(acertos+1)
-      console.log('acertou')
+      setAcertos(acertos => acertos+1)
+      console.log("correct! ", acertos)
     } else {
-      setErros(erros+1)
-      console.log('errou')
+      setErros(erros => erros+1)
+      console.log("wrong! ", erros)
     }
     proximaQuestao()
   }

@@ -3,14 +3,15 @@ import React, { Component, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 const Resultados = ({ route }) => {
-    const navigation = useNavigation(route);
+    const navigation = useNavigation();
     const [acertos, setAcertos] = useState(route.params.acertos);
     const [erros, setErros] = useState(route.params.erros);
-    
 
-    const zerarTudo = () => {
-        () => navigation.navigate('Home', {acertos: 0, erros:0})
-    }
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => null, // remove o botão de volta
+        });
+    }, [navigation]);
 
     return(
         <View style={ styles.container }>
@@ -47,4 +48,4 @@ const styles = StyleSheet.create({
       marginBottom: 30,
       alignItems: 'center',
     },
-  })
+});
