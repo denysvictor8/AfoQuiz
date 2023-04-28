@@ -10,6 +10,7 @@ const Home = () => {
 
   const [quizzes, setQuizzes] = useState([]);
   const navigation = useNavigation();
+  const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
 
@@ -21,39 +22,44 @@ const Home = () => {
         quizList.push({...doc.data(), id: doc.id})
       });
       setQuizzes(quizList);
-      console.log(quizList)
+      setCarregado(true);
+      //console.log(quizList)
     }
     getQuizzes(db)
   }, []);
 
 
-  return (
-    <View style={ styles.container }>
-      <Text>Selecione uma das categorias abaixo:</Text>
-      <FlashList
-        data={quizzes}
-        estimatedItemSize={200}
-        renderItem={({ item }) => 
-          <View>
-            <Pressable style={ styles.opcoes }
-              onPress={ 
-                  () => navigation.navigate('Quiz', {item})
-              }
-            >
-              <View>
-                <Text styles={styles.titulo}>
-                  {item.id}
-                </Text>
-                <Text>
-                  {item.descricao}
-                </Text>
-              </View>
-            </Pressable>
-          </View>
-        }
-      />
-    </View>
-  )
+  if (!carregado) {
+    return (
+      <View style={styles.container}>
+        <Text>Aguarde, enquanto carregamos as categorias....</Text>
+      </View>
+    );
+  } else {
+    return (
+      <View style={ styles.container }>
+        <Text style={ styles.titulo } >Selecione uma das categorias abaixo:</Text>
+        <FlashList
+          data={quizzes}
+          estimatedItemSize={200}
+          renderItem={({ item }) => 
+            <View>
+              <Pressable style={ styles.opcoes }
+                onPress={ 
+                    () => navigation.navigate('Quiz', {item})
+                }
+              >
+                <View>
+                  <Text style = { styles.id } >{item.id}</Text>
+                  <Text>{item.descricao}</Text>
+                </View>
+              </Pressable>
+            </View>
+          }
+        />
+      </View>
+    )
+  }
 }
 
 export default Home;
@@ -61,15 +67,23 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex:1, 
-    backgroundColor:"#f6d7b0",    
+    backgroundColor:"#fff",    
   },
   opcoes: {
-    backgroundColor: '#e7c496',
-    padding: 12,
-    paddingHorizontal: 16,
-    borderRadius: 16,
-    alignItems: 'center',
-    marginBottom: 30,
-    alignItems: 'center',
+    backgroundColor: '#eee',
+    padding: 10,
+    margin: 10,
+    borderRadius: 20,
+    //paddingHorizontal: 16,
+    //marginBottom: 30,
   },
+  titulo: {
+    fontSize: 20,
+    margin: 10,
+  },
+  id: {
+    fontSize: 25,
+    textAlign: 'left',
+    paddingBottom: 5
+  }
 })

@@ -6,7 +6,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    
+    // conexao com o banco
 };
 
 const app = initializeApp(firebaseConfig); 

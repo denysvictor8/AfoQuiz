@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { Component, useState } from 'react'
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import React, { Component, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 const Resultados = ({ route }) => {
@@ -13,21 +13,42 @@ const Resultados = ({ route }) => {
         });
     }, [navigation]);
 
+    useEffect(() => {
+      renderizarImagem();
+    }, []);
+
+    const renderizarImagem = () => {
+      if (acertos > erros ) {
+        return (
+          <Image
+            style={styles.imagem}
+            source={require('../../assets/res_acertos.png')}
+          />
+        );
+      } else {
+          <Image
+          style={styles.imagem}
+          source={require('../../assets/res_erros.png')}
+        />
+      }
+    };      
+
     return(
         <View style={ styles.container }>
-            <View>
-                <Text>
-                    Total de acertos: { acertos }
-                    Total de erros: { erros }
-                </Text>
-            </View>
-            <View style={ styles.opcoes }>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Home', {acertos: 0, erros:0})}
-                >
-                    <Text>Voltar ao início</Text>
-                </TouchableOpacity>
-            </View>
+          <View>
+            <Text style = { styles.titulo }>
+                Total de acertos: { acertos }
+                {'\n'}
+                Total de erros: { erros }
+            </Text>
+          </View>
+          <View style={ styles.opcoes }>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home', {acertos: 0, erros:0})}
+            >
+              <Text>Voltar ao início</Text>
+            </TouchableOpacity>
+          </View>
         </View>
     )
 }
@@ -36,16 +57,30 @@ export default Resultados;
 
 const styles = StyleSheet.create({
     container: {
-      flex:1, 
-      backgroundColor:"#f6d7b0",    
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20,
+    },
+    titulo: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      textAlign: 'center',
     },
     opcoes: {
-      backgroundColor: '#34A0A4',
-      padding: 12,
-      paddingHorizontal: 16,
-      borderRadius: 16,
+      flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 30,
-      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 10,
+      backgroundColor: '#f0ad4e',
+      borderRadius: 10,
+      marginTop: 20,
     },
-});
+    image: {
+      width: 100,
+      height: 100,
+      resizeMode: 'contain',
+    },
+  });  

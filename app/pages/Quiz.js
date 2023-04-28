@@ -51,17 +51,14 @@ const Quiz = ({ route }) => {
   }
 
   const verificarResposta = (opMarcada, opCorreta) => {
-    console.log("choosen: ", opMarcada, " correct: ", opCorreta)
-    // compares the choosen option with the right value
     if (opMarcada == opCorreta) {
-      setAcertos(acertos => acertos+1)
-      console.log("correct! ", acertos)
+      setAcertos((prevAcertos) => prevAcertos + 1);
     } else {
-      setErros(erros => erros+1)
-      console.log("wrong! ", erros)
+      setErros((prevErros) => prevErros + 1);
     }
-    proximaQuestao()
-  }
+    proximaQuestao();
+  };
+
   
   if (!carregado) {
     return (
@@ -108,7 +105,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
     height: '100%',
-    backgroundColor:"#f6d7b0", 
+    backgroundColor:"#fff", 
   },
   top: {
     marginVertical: 16,
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   button: {
-    backgroundColor: '#1A759F',
+    backgroundColor: '#eee',
     padding: 12,
     paddingHorizontal: 16,
     borderRadius: 16,
@@ -142,12 +139,12 @@ const styles = StyleSheet.create({
   option: {
     fontSize: 18,
     fontWeight: '500',
-    color: 'white',
+    color: '#000',
   },
   optionButton: {
     paddingVertical: 12,
     marginVertical: 6,
-    backgroundColor: '#0066B2', //0066B2
+    backgroundColor: '#eee', //0066B2
     paddingHorizontal: 12,
     borderRadius: 12,
   },
