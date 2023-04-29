@@ -13,7 +13,6 @@ const Home = () => {
   const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
-
     async function getQuizzes(db) {
       const q = query(collection(db, "quizzes"));
       const querySnapshot = await getDocs(q);
@@ -27,7 +26,6 @@ const Home = () => {
     }
     getQuizzes(db)
   }, []);
-
 
   if (!carregado) {
     return (
@@ -64,26 +62,54 @@ const Home = () => {
 
 export default Home;
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex:1, 
+//     backgroundColor:"#fff",    
+//   },
+//   opcoes: {
+//     backgroundColor: '#eee',
+//     padding: 10,
+//     margin: 10,
+//     borderRadius: 20,
+//     //paddingHorizontal: 16,
+//     //marginBottom: 30,
+//   },
+//   titulo: {
+//     fontSize: 20,
+//     margin: 10,
+//   },
+//   id: {
+//     fontSize: 25,
+//     textAlign: 'left',
+//     paddingBottom: 5
+//   }
+// })
+
 const styles = StyleSheet.create({
   container: {
-    flex:1, 
-    backgroundColor:"#fff",    
-  },
-  opcoes: {
-    backgroundColor: '#eee',
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     padding: 10,
-    margin: 10,
-    borderRadius: 20,
-    //paddingHorizontal: 16,
-    //marginBottom: 30,
   },
   titulo: {
     fontSize: 20,
-    margin: 10,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  opcoes: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    marginBottom: 15,
+    backgroundColor: '#eee',
+    borderRadius: 10,
   },
   id: {
-    fontSize: 25,
-    textAlign: 'left',
-    paddingBottom: 5
-  }
-})
+    fontWeight: 'bold',
+    marginRight: 10,
+  },
+});

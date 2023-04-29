@@ -42,13 +42,17 @@ const Quiz = ({ route }) => {
     if (ques < questoes.length - 1 ) {
       navegarQuestao(ques + 1);
     } else {
-      fimQuiz()
+      fimQuiz();
     }
-  };
+  };  
 
   const fimQuiz = () => {
     navigation.navigate('Resultados', {erros, acertos})
   }
+
+  useEffect(() => {
+    console.log("erros:" + erros +", acertos:" + acertos);
+  }, [erros, acertos]);
 
   const verificarResposta = (opMarcada, opCorreta) => {
     if (opMarcada == opCorreta) {

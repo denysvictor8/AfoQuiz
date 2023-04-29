@@ -13,43 +13,35 @@ const Resultados = ({ route }) => {
         });
     }, [navigation]);
 
-    useEffect(() => {
-      renderizarImagem();
-    }, []);
 
-    const renderizarImagem = () => {
-      if (acertos > erros ) {
-        return (
-          <Image
-            style={styles.imagem}
-            source={require('../../assets/res_acertos.png')}
-          />
-        );
-      } else {
-          <Image
-          style={styles.imagem}
-          source={require('../../assets/res_erros.png')}
-        />
-      }
-    };      
 
     return(
-        <View style={ styles.container }>
-          <View>
-            <Text style = { styles.titulo }>
-                Total de acertos: { acertos }
-                {'\n'}
-                Total de erros: { erros }
-            </Text>
-          </View>
-          <View style={ styles.opcoes }>
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Home', {acertos: 0, erros:0})}
-            >
-              <Text>Voltar ao início</Text>
-            </TouchableOpacity>
-          </View>
+      <View style={ styles.container }>
+
+        <View>
+          <Image style={ styles.image }
+            source = { acertos > erros ? require('../../assets/res_acertos.png') : require('../../assets/res_erros.png')}
+          >
+          </Image>
         </View>
+
+        <View>
+          <Text style = { styles.titulo }>
+              Total de acertos: { acertos }
+              {'\n'}
+              Total de erros: { erros }
+          </Text>
+        </View>
+
+        <View style={ styles.opcoes }>
+          <TouchableOpacity
+              onPress={() => navigation.navigate('Home', {acertos: 0, erros:0})}
+          >
+            <Text>Voltar ao início</Text>
+          </TouchableOpacity>
+        </View>
+        
+      </View>
     )
 }
 
@@ -79,8 +71,8 @@ const styles = StyleSheet.create({
       marginTop: 20,
     },
     image: {
-      width: 100,
-      height: 100,
+      width: 200,
+      height: 200,
       resizeMode: 'contain',
     },
   });  
